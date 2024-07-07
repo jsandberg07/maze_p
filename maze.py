@@ -1,4 +1,5 @@
 from graphics import Cell, Point
+import time
 
 class Maze:
     def __init__(
@@ -41,5 +42,15 @@ class Maze:
         for x in range(0, self.__num_cols):
             for y in range(0, self.__num_cols):
                 self.__cells[x][y].draw()
+
+    def __draw_cell(self, i, j):
+        self.__cells[i][j].draw()
+
+    def __animate(self):
+        if self.__win is None:
+            return
+        self.__win.redraw()
+        time.sleep(.05)
+        
 
 

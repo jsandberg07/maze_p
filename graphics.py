@@ -51,6 +51,22 @@ class Cell:
             line = Line(p1, p2)
             self.__win.draw_line(line, "black")
 
+    def draw_move(self, to_cell, undo=False):
+        # between two cells
+        # so find the midpoint of each by averaging the cells as a point
+        # then draw the line between them duh
+        p1 = self.get_midpoint()
+        p2 = to_cell.get_midpoint()
+        line = Line(p1, p2)
+        draw_color = "red"
+        if undo:
+            draw_color = "gray"
+        self.__win.draw_line(line, draw_color)
+        
+    def get_midpoint(self):
+        x = ((self.__x1 + self.__x2) / 2)
+        y = ((self.__y1 + self.__y2) / 2)
+        return Point(x, y)
 
-# def draw_line(self, line, fill_color):
-        # line.draw(self.__canvas, fill_color)
+
+

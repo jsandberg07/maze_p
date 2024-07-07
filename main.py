@@ -1,5 +1,6 @@
 from window import Window
 from graphics import Line, Point, Cell
+from maze import Maze
 
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 400
@@ -7,7 +8,10 @@ SCREEN_HEIGHT = 400
 def main():
     win = Window(SCREEN_WIDTH, SCREEN_HEIGHT)
     # black_box(win)
-    test_cells(win)
+    # test_cells(win)
+    # test_midpoint(win)
+
+    test_maze(win)
     win.wait_for_close()
 
 def black_box(win):
@@ -76,5 +80,19 @@ def test_cells(win):
     # cell1 = Cell(p1, p2, win)
     # cell1.draw()
     
+def test_midpoint(win):
+    p1 = Point(21, 21)
+    p2 = Point(51, 51)
+    p3 = Point(SCREEN_WIDTH - 51, SCREEN_HEIGHT - 51)
+    p4 = Point(SCREEN_WIDTH - 21, SCREEN_HEIGHT - 21)
+
+    cell1 = Cell(p1, p2, win)
+    cell2 = Cell(p3, p4, win)
+    cell1.draw()
+    cell2.draw()
+    cell1.draw_move(cell2, True)
+
+def test_maze(win):
+    maze = Maze(10, 10, 4, 4, 10, 10, win)
 
 main()

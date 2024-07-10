@@ -65,7 +65,7 @@ class Maze:
         if self.__win is None:
             return
         self.__win.redraw()
-        time.sleep(.05)
+        time.sleep(.1)
 
     def __break_entrance_and_exit(self):
         self.__cells[0][0].has_left_wall = False
@@ -174,15 +174,15 @@ class Maze:
         # call recursive. if returns true, then return true
         # otherwise draw undo between those cells
 
-        # left
-        if self.__cells[i][j].has_left_wall == False:
-            if i - 1 >= 0:
-                if self.__cells[i - 1][j].visited == False:
-                    self.__cells[i][j].draw_move(self.__cells[i-1][j])
-                    if self.__solve_r(i-1, j):
+        # down
+        if self.__cells[i][j].has_bottom_wall == False:
+            if j + 1 < self.__num_rows:
+                if self.__cells[i][j + 1].visited == False:
+                    self.__cells[i][j].draw_move(self.__cells[i][j+1])
+                    if self.__solve_r(i, j+1):
                         return True
                     else:
-                        self.__cells[i][j].draw_move(self.__cells[i-1][j], True)
+                        self.__cells[i][j].draw_move(self.__cells[i][j+1], True)
                 
         # right
         if self.__cells[i][j].has_right_wall == False:
@@ -194,6 +194,18 @@ class Maze:
                     else:
                         self.__cells[i][j].draw_move(self.__cells[i+1][j], True)
                 
+        
+
+        # left
+        if self.__cells[i][j].has_left_wall == False:
+            if i - 1 >= 0:
+                if self.__cells[i - 1][j].visited == False:
+                    self.__cells[i][j].draw_move(self.__cells[i-1][j])
+                    if self.__solve_r(i-1, j):
+                        return True
+                    else:
+                        self.__cells[i][j].draw_move(self.__cells[i-1][j], True)
+                
         # up
         if self.__cells[i][j].has_top_wall == False:
             if j - 1 >= 0:
@@ -203,16 +215,6 @@ class Maze:
                         return True
                     else:
                         self.__cells[i][j].draw_move(self.__cells[i][j-1], True)
-                
-        # down
-        if self.__cells[i][j].has_bottom_wall == False:
-            if j + 1 < self.__num_rows:
-                if self.__cells[i][j + 1].visited == False:
-                    self.__cells[i][j].draw_move(self.__cells[i][j+1])
-                    if self.__solve_r(i, j+1):
-                        return True
-                    else:
-                        self.__cells[i][j].draw_move(self.__cells[i][j+1], True)
                 
         # if none work out, return false
         return False

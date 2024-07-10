@@ -1,6 +1,7 @@
 from window import Window
 from graphics import Line, Point, Cell
 from maze import Maze
+import time
 
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
@@ -12,6 +13,7 @@ def main():
     # test_midpoint(win)
 
     maze = Maze(10, 10, 15, 15, 35, 35, win)
+    time.sleep(3)
     maze.solve()
     
     win.wait_for_close()

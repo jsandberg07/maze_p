@@ -84,5 +84,6 @@ class Cell:
         y = ((self.__y1 + self.__y2) / 2)
         return Point(x, y)
 
-
+    
+        
 

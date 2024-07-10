@@ -11,7 +11,9 @@ def main():
     # test_cells(win)
     # test_midpoint(win)
 
-    test_maze(win)
+    maze = Maze(10, 10, 15, 15, 35, 35, win)
+    maze.solve()
+    
     win.wait_for_close()
 
     

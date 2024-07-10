@@ -15,7 +15,7 @@ class Line:
         
 
 class Cell:
-    def __init__(self, p1, p2, win):
+    def __init__(self, p1, p2, win=None):
         self.__x1 = p1.x
         self.__y1 = p1.y
         self.__x2 = p2.x
@@ -28,28 +28,44 @@ class Cell:
         self.has_right_wall = True
         self.has_bottom_wall = True
 
+        self.visited = False
+
     # draw a line for each wall
     def draw(self):
+        
+        p1 = Point(self.__x1, self.__y1)
+        p2 = Point(self.__x2, self.__y1)
+        line = Line(p1, p2)
         if self.has_top_wall:
-            p1 = Point(self.__x1, self.__y1)
-            p2 = Point(self.__x2, self.__y1)
-            line = Line(p1, p2)
             self.__win.draw_line(line, "black")
+        else:
+            self.__win.draw_line(line, "white")
+
+        
+        p1 = Point(self.__x2, self.__y1)
+        p2 = Point(self.__x2, self.__y2)
+        line = Line(p1, p2)
         if self.has_right_wall:
-            p1 = Point(self.__x2, self.__y1)
-            p2 = Point(self.__x2, self.__y2)
-            line = Line(p1, p2)
             self.__win.draw_line(line, "black")
+        else:
+            self.__win.draw_line(line, "white")
+
+        
+        p1 = Point(self.__x1, self.__y1)
+        p2 = Point(self.__x1, self.__y2)
+        line = Line(p1, p2)
         if self.has_left_wall:
-            p1 = Point(self.__x1, self.__y1)
-            p2 = Point(self.__x1, self.__y2)
-            line = Line(p1, p2)
             self.__win.draw_line(line, "black")
+        else:
+            self.__win.draw_line(line, "white")
+
+        p1 = Point(self.__x1, self.__y2)
+        p2 = Point(self.__x2, self.__y2)
+        line = Line(p1, p2)
         if self.has_bottom_wall:
-            p1 = Point(self.__x1, self.__y2)
-            p2 = Point(self.__x2, self.__y2)
-            line = Line(p1, p2)
             self.__win.draw_line(line, "black")
+        else:
+            self.__win.draw_line(line, "white")
 
     def draw_move(self, to_cell, undo=False):
         # between two cells

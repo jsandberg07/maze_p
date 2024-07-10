@@ -1,13 +1,14 @@
 from tkinter import Tk, BOTH, Canvas
 from graphics import Line
 
+# blue bg="#6481d2"
 class Window:
     def __init__(self, width, height):
         # self.__width = width
         # self.__height = height
         self.__root = Tk()
         self.__root.title = "Hell yeah"
-        self.__canvas = Canvas(self.__root, bg="#6481d2", height=height, width=width, )
+        self.__canvas = Canvas(self.__root, bg="white", height=height, width=width, )
         self.__canvas.pack(fill=BOTH, expand=1)
         self.__running = False
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
